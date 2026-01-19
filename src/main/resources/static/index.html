@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gym Reservas - Panel</title>
+    <style>
+        body { font-family: sans-serif; background: #f4f4f4; padding: 20px; }
+        .clase-card { background: white; padding: 15px; margin: 10px 0; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        button { background: #28a745; color: white; border: none; padding: 10px; cursor: pointer; border-radius: 5px; }
+    </style>
+</head>
+<body>
+<h1>Clases Disponibles</h1>
+<div id="lista-clases"></div>
+
+<script>
+    // Función para cargar las clases desde tu API de Java
+    async function cargarClases() {
+        const response = await fetch('/api/clases');
+        const clases = await response.json();
+        const contenedor = document.getElementById('lista-clases');
+
+        contenedor.innerHTML = '';
+        clases.forEach(clase => {
+            contenedor.innerHTML += `
+                    <div class="clase-card">
+                        <h3>${clase.descripcion}</h3>
+                        <p>Instructor: ${clase.instructor}</p>
+                        <p>Cupos: ${clase.capacidadMaxima}</p>
+                        <button onclick="reservar(${clase.id})">Reservar Turno</button>
+                    </div>
+                `;
+        });
+    }
+
+    async function reservar(claseId) {
+        const usuarioId = prompt("Por favor, ingresa tu ID de Socio (ej: 1):");
+        if (!usuarioId) return;
+
+        // Esto asegura que los parámetros se formateen correctamente en la URL
+        const params = new URLSearchParams({
+            usuarioId: usuarioId,
+            claseId: claseId
+        });
+
+        try {
+            const response = await fetch(`/api/reservas/crear?${params.toString()}`, {
+                method: 'POST'
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                alert(`¡Reserva exitosa! ID de Reserva: ${data.id}`);
+                cargarClases(); // Refrescamos para ver que el cupo bajó
+            } else {
+                // Si el backend manda un error, intentamos leer el mensaje
+                const errorData = await response.json();
+                alert("Error: " + (errorData.message || "No se pudo realizar la reserva."));
+            }
+        } catch (error) {
+            alert("Hubo un problema de conexión con el servidor.");
+        }
+    }
+
+    cargarClases();
+</script>
+</body>
+</html>
