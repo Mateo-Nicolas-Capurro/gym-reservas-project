@@ -1,4 +1,5 @@
 Sistema de Gestión de Reservas para Gimnasio 🏋️‍♂️
+
 Este es un proyecto Fullstack desarrollado como parte de mi formación profesional. El sistema permite gestionar socios, clases de gimnasio y realizar reservas en tiempo real validando la capacidad máxima de cada clase.
 
 🚀 Tecnologías Utilizadas
