@@ -1,38 +1,41 @@
-Sistema de Gestión de Reservas para Gimnasio 🏋️‍♂️
 
 
-Este es un proyecto Fullstack desarrollado como parte de mi formación profesional. El sistema permite gestionar socios, clases de gimnasio y realizar reservas en tiempo real validando la capacidad máxima de cada clase.
+🏋️‍♂️ Sistema de Gestión de Reservas - Gimnasio Fullstack
 
+¡Bienvenido! Este es un sistema de gestión de turnos desarrollado para digitalizar la reserva de clases en un gimnasio. El proyecto demuestra la integración de una API robusta en Java con una interfaz de usuario dinámica.
 
-🚀 Tecnologías Utilizadas
+🚀 Tecnologías y Herramientas
 
+Backend: Java 21 con el framework Spring Boot 3.4.x.
 
-Backend: Java 21 con Spring Boot 3.4.x.
+Base de Datos: H2 Database (en memoria), ideal para pruebas rápidas de desarrollo.
 
-Persistencia: Spring Data JPA con base de datos H2 (en memoria).
+Seguridad y Lógica: Validación de cupos y disponibilidad de socios en tiempo real.
 
-Documentación: Swagger UI (OpenAPI 3) para testeo de endpoints.
+Documentación: Swagger UI (OpenAPI 3) para visualizar y probar todos los endpoints.
 
-Frontend: Interfaz web dinámica utilizando JavaScript (Fetch API) y Bootstrap 5 para el diseño responsivo.
+Frontend: Aplicación de una sola página (SPA) usando Vanilla JavaScript, HTML5 y Bootstrap 5 para un diseño responsivo.
 
+🛠️ Funcionalidades del Sistema
 
-🛠️ Características Principales
+Gestión de Socios: Creación y listado de usuarios del gimnasio.
 
+Administración de Clases: Registro de actividades con instructor, horario y capacidad máxima.
 
-Arquitectura en capas: Separación clara entre Controladores, Servicios y Repositorios.
+Motor de Reservas: Lógica de negocio centralizada que descuenta cupos automáticamente al confirmar un turno.
 
-Lógica de Negocio: El sistema descuenta automáticamente un cupo de la clase al realizar una reserva exitosa y bloquea nuevas reservas si el cupo está lleno.
+💻 Instalación y Uso
 
-API REST: Endpoints optimizados para la creación y consulta de Usuarios, Clases y Reservas.
+Clonar el proyecto:
 
+Bash
 
-💻 Cómo ejecutar el proyecto
+git clone https://github.com/Mateo-Nicolas-Capurro/gym-reservas-project.git
+Ejecutar: Abrir en IntelliJ IDEA y correr la clase ReservasGymProjectApplication.
 
+Acceso:
 
-Clona este repositorio: git clone https://github.com/Mateo-Nicolas-Capurro/gym-reservas-project.git.
+Página Web: http://localhost:8080/index.html
 
-Ejecuta la aplicación desde tu IDE favorito (IntelliJ IDEA recomendado).
+Documentación API: http://localhost:8080/swagger-ui/index.html
 
-Accede a la interfaz web en: http://localhost:8080/index.html.
-
-Explora la documentación de la API en: http://localhost:8080/swagger-ui/index.html.
