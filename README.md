@@ -1,6 +1,7 @@
 
 
 🏋️‍♂️ Sistema de Gestión de Reservas - Gimnasio Fullstack
+![Panel de Control del Gimnasio](image.png)
 
 ¡Bienvenido! Este es un sistema de gestión de turnos desarrollado para digitalizar la reserva de clases en un gimnasio. El proyecto demuestra la integración de una API robusta en Java con una interfaz de usuario dinámica.
 
