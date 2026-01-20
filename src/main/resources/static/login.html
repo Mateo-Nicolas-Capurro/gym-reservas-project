@@ -77,13 +77,24 @@
 <script>
     document.getElementById('loginForm').addEventListener('submit', async (e) => {
         e.preventDefault();
-
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
 
-        // Por ahora solo mostraremos los datos, luego conectaremos al Back
-        console.log("Intentando ingresar con:", email, password);
-        alert("¡Diseño listo! Ahora necesitamos programar el Backend para validar estos datos.");
+        const response = await fetch('/api/usuarios/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password })
+        });
+
+        if (response.ok) {
+            const usuario = await response.json();
+            // Guardamos tu nombre e ID para personalizar la experiencia
+            localStorage.setItem('usuarioId', usuario.id);
+            localStorage.setItem('nombreUsuario', usuario.nombre);
+            window.location.href = '/index.html'; // Te redirige al panel de clases
+        } else {
+            alert("Credenciales incorrectas. Por favor, intenta de nuevo.");
+        }
     });
 </script>
 </body>

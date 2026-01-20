@@ -25,6 +25,32 @@
 </div>
 
 <script>
+    // Recuperamos tus datos del localStorage
+    const usuarioIdActual = localStorage.getItem('usuarioId');
+    const nombreActual = localStorage.getItem('nombreUsuario');
+
+    // Si no estás logueado, te enviamos al login
+    if (!usuarioIdActual) {
+        window.location.href = '/login.html';
+    } else {
+        // Podrías agregar un elemento <h2 id="bienvenida"></h2> en tu HTML
+        const bienvenida = document.getElementById('bienvenida');
+        if (bienvenida) bienvenida.innerText = `¡Hola, ${nombreActual}!`;
+    }
+
+    async function reservar(claseId) {
+        // Ya no usamos prompt; usamos tu ID guardado automáticamente
+        const response = await fetch(`/api/reservas/crear?usuarioId=${usuarioIdActual}&claseId=${claseId}`, {
+            method: 'POST'
+        });
+
+        if (response.ok) {
+            alert("¡Reserva confirmada con éxito, Mateo!");
+            cargarClases();
+        } else {
+            alert("Hubo un problema con la reserva. Verifica el cupo disponible.");
+        }
+    }
     async function cargarClases() {
         try {
             const response = await fetch('/api/clases');
@@ -57,7 +83,7 @@
         const usuarioId = prompt("Por favor, ingresa tu ID de Socio:");
         if (!usuarioId) return;
 
-        // URL corregida con / al inicio para evitar el error de recurso estático
+
         const response = await fetch(`/api/reservas/crear?usuarioId=${usuarioId}&claseId=${claseId}`, {
             method: 'POST'
         });
